@@ -34,7 +34,7 @@ app.post('/newMqlLeadCreated', async (req, res) => {
                         parsed?.Envelope?.Body?.notifications?.Notification;
 
     const sObject = Array.isArray(notification) ? notification[0]?.sObject : notification?.sObject;
-    const leadId = sObject?.Id || sObject?.LeadId || '00Q8a00001w4YCLEA2';
+    const leadId = sObject?.['sf:Id'] || sObject?.Id || sObject?.LeadId;
 
     console.log('Extracted Lead ID:', leadId);
     console.log('Full sObject data:', JSON.stringify(sObject, null, 2));
